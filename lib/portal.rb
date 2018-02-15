@@ -24,5 +24,6 @@ class Portal
   end
   
   def self.find_or_create_by_url
+    if 
   end
 end
