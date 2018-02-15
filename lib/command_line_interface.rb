@@ -27,7 +27,7 @@ class CommandLineInterface
   
   def find_choice
     picked = @list[@choice.to_i - 1]
-    selected = Topic.new(picked)
+    selected = Topic.find_or_create_by_name(picked)
     puts "You selected #{picked}"
     puts "#{selected}"
   end
