@@ -23,7 +23,8 @@ class Portal
     self.topic.name
   end
   
-  def self.find_or_create_by_url
-    if 
+  def self.find_or_create_by_url(url)
+    @portal_url = url
+    if @@all.detect{|item| @portal_url.name
   end
 end
