@@ -23,5 +23,6 @@ class Portal
     self.topic.name
   end
   
-  def self.find_or_create
+  def self.find_or_create_by_url
+  end
 end
