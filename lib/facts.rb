@@ -4,6 +4,7 @@ require 'pry'
 
 class Fact
   #belongs_to Portal
+  #finds a random fact
   #returns facts
   attr_accessor :name, :facts, :all, :portal
   
