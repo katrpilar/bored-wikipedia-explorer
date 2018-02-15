@@ -25,6 +25,6 @@ class Portal
   
   def self.find_or_create_by_url(url)
     @url = url
-    if @@all.detect{|item| @url.name
+    if @@all.detect{|item| @url.name}
   end
 end
