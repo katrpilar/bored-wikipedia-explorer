@@ -24,7 +24,7 @@ class Fact
   end
   
   def self.find_or_create_by_name
-    @self.random
+    self.random
   end
   
 end
