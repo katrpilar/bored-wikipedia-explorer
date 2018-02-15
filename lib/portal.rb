@@ -12,7 +12,6 @@ class Portal
   end
   
   def self.random_fact
-    binding.pry
     return Scraper.scrape_portal_dyk(@random_portal).sample
   end
   
@@ -23,5 +22,5 @@ class Portal
   def topic_name
     self.topic.name
   end
-  
+  binding.pry
 end
