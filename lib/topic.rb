@@ -1,7 +1,6 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/portal.rb"
 
-
 class Topic
   #has many Portals
   @@all = []
