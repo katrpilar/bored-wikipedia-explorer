@@ -22,5 +22,4 @@ class Portal
   def topic_name
     self.topic.name
   end
-  binding.pry
 end
