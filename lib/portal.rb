@@ -3,7 +3,7 @@ require_relative "../lib/scraper.rb"
 class Portal
   #belongs_to topic
   #has_many Facts
-  attr_accessor :random_portal, :all_portals, :topic
+  attr_accessor :random_portal, :all_portals, :topic_name
   @@all = []
   def initialize(random_portal)
     @random_portal = random_portal
