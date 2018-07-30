@@ -55,9 +55,6 @@ class Scraper
       # end
     }
 
-    doc.search(".headlines").each{|anchor|
-      @@portalcontents << anchor.search("a")[1].values.first
-    }
 
     #doc.search("h2 .mw-headline big")[3].search("a")[1].values.first
     #updating the @@all_topics hash with topic symbols
@@ -69,15 +66,19 @@ class Scraper
     return @@all_topics
    end
 
-   binding.pry
-
+   def self.get_selected_portal_contents_url(num)
+    #  doc.search(".headlines").each{|anchor|
+    #    @@portalcontents << anchor.search("a")[1].values.first
+    #  }
+    return doc.search(".headlines")[num].search("a")[1].values.first
+    binding.pry
+   end
 
    def self.scrape_portal_dyk(rand_portal_url)
     html = open(rand_portal_url)
     doc = Nokogiri::HTML(html)
 
     if doc.at_css("[id^='Did_you_know']") != nil && doc.at_css("[id^='Did_you_know']").parent.parent.next.next != nil
-      binding.pry
       doc.at_css("[id^='Did_you_know']").parent.parent.next.next['class']="dyk_container"
       # doc.search(".dyk_container").children.search("p")[0].text
       # binding.pry

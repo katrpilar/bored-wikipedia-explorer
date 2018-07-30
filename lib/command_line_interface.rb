@@ -12,6 +12,10 @@ class CommandLineInterface
     puts "Select a number to explore facts from that topic"
     @choice = @list[gets.strip.to_i]
 
+    #determines portal contents page url
+    binding.pry
+    get_selected_portal_contents_url(@choice_i)
+
     #finds or creates an Topic instance
     @selectedTopic = Topic.find_or_create_by_name(@choice)
     @randurl = Scraper.scrape_portals_page(@choice)
