@@ -4,6 +4,7 @@ require 'pry'
 
 class Scraper
   @@all_topics = []
+  @@portalcontents = []
 
   def self.scrape_portals_page(name)
     choice_index = @@all_topics.index(name)
@@ -49,8 +50,16 @@ class Scraper
     #set .headlines class for all main topics
     doc.search("h2 .mw-headline big").each{|anchor|
       anchor['class'] = "headlines" unless anchor.text == "Wikipedia's contents: Portals" || anchor.text == "Wikipedia's contents: Portals" || anchor.text.include?("General reference")
+
+      # if anchor.search(".headlines").search("a")[1].values.first
+      # end
     }
 
+    doc.search(".headlines").each{|anchor|
+      @@portalcontents << anchor.search("a")[1].values.first
+    }
+
+    #doc.search("h2 .mw-headline big")[3].search("a")[1].values.first
     #updating the @@all_topics hash with topic symbols
     doc.search(".headlines").each{|anchor|
       copy = anchor.text.chomp("(see in all page types)").strip
@@ -59,6 +68,9 @@ class Scraper
     }
     return @@all_topics
    end
+
+   binding.pry
+
 
    def self.scrape_portal_dyk(rand_portal_url)
     html = open(rand_portal_url)
