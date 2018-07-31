@@ -17,13 +17,13 @@ class CommandLineInterface
 
     #finds or creates an Topic instance
     @selectedTopic = Topic.find_or_create_by_name(@choice)
-    @randurl = Scraper.scrape_portals_page(@choice)
+    @randurl = Scraper.scrape_portals_page(Scraper.all_contents[@index - 1])
 
     #determines portal contents page url
     # binding.pry
     # Scraper.get_selected_portal_contents_url(@index - 1)
 
-    @randfact = Scraper.scrape_portal_dyk(@randurl)
+    @randfact = Scraper.scrape_portal_dyk(@index - 1)
     # Scraper.scrape_portal_dyk(@randurl)
     # binding.pry
     #selects a random portal url from Scraper.scrape_portals_page
