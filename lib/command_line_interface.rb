@@ -10,15 +10,19 @@ class CommandLineInterface
     #Displays all available main topics
     display_all_topics
     puts "Select a number to explore facts from that topic"
-    @choice = @list[gets.strip.to_i]
+    @index = gets.strip.to_i;
+    @choice = @list[@index]
 
-    #determines portal contents page url
-    binding.pry
-    get_selected_portal_contents_url(@choice_i)
+
 
     #finds or creates an Topic instance
     @selectedTopic = Topic.find_or_create_by_name(@choice)
     @randurl = Scraper.scrape_portals_page(@choice)
+
+    #determines portal contents page url
+    # binding.pry
+    # Scraper.get_selected_portal_contents_url(@index - 1)
+
     @randfact = Scraper.scrape_portal_dyk(@randurl)
     # Scraper.scrape_portal_dyk(@randurl)
     # binding.pry
@@ -37,7 +41,7 @@ class CommandLineInterface
   def self.display_all_topics
     colors = [:red, :green, :yellow, :blue, :magenta, :cyan, :red, :green, :yellow, :blue, :magenta]
     @list = []
-    Topic.all_topics_list.each_with_index{|item, indx|
+    Scraper.all_topics.each_with_index{|item, indx|
       @list << item
       puts "#{indx + 1}. #{item}".colorize(colors[indx])
     }

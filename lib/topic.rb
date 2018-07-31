@@ -18,9 +18,9 @@ class Topic
     # return create_portal
   end
 
-  def self.all_topics_list
-    return Scraper.all_topics
-  end
+  # def self.all_topics_list
+  #   return Scraper.all_topics
+  # end
 
   # def add_portal
   #   new_portal = self.find_random_portal_page

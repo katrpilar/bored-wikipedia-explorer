@@ -4,10 +4,12 @@ require 'pry'
 
 class Scraper
   @@all_topics = []
-  @@portalcontents = []
+  @@all_contents = []
 
   def self.scrape_portals_page(name)
     choice_index = @@all_topics.index(name)
+    binding.pry
+
     #choice is the chosen topic index
     #there are 11 main topics derrived from Scraper.all_topics
     html = open("https://en.wikipedia.org/wiki/Portal:Contents/Portals")
@@ -15,6 +17,14 @@ class Scraper
       config.noblanks
     end
 
+    # doc.search("h2 .mw-headline big").each{|anchor|
+    #   anchor['class'] = "headlines" unless anchor.text == "Wikipedia's contents: Portals" || anchor.text == "Wikipedia's contents: Portals" || anchor.text.include?("General reference")
+
+      # if anchor.search(".headlines").search("a")[1].values.first
+      # end
+    # }
+
+    doc.search(".headlines")[choice_index - 1].search("a")[1].values.first
 
     #set portals-container class for all portal links for each topic
     #Thus there are 12 portal links containers but we're skipping the first one
@@ -62,17 +72,18 @@ class Scraper
       copy = anchor.text.chomp("(see in all page types)").strip
       copy.slice!(-3..-1)
       @@all_topics << copy
+      # @@all_contents << anchor.search("a")[1].values.first
     }
     return @@all_topics
    end
 
-   def self.get_selected_portal_contents_url(num)
+  #  def self.get_selected_portal_contents_url(num)
     #  doc.search(".headlines").each{|anchor|
     #    @@portalcontents << anchor.search("a")[1].values.first
     #  }
-    return doc.search(".headlines")[num].search("a")[1].values.first
-    binding.pry
-   end
+  #   return doc.search(".headlines")[num].search("a")[1].values.first
+  #   binding.pry
+  #  end
 
    def self.scrape_portal_dyk(rand_portal_url)
     html = open(rand_portal_url)
